@@ -7,9 +7,10 @@ const Expenses = (props) => {
   const { items } = props;
   return (
     <Card className="expenses">
-      {items.map((item) => {
+      {items.map((item, index) => {
         return (
           <ExpenseItem
+            key={index}
             title={item.title}
             amount={item.amount}
             date={item.date}

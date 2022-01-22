@@ -12,6 +12,9 @@ const ExpenseItem = (props) => {
         <h2>{title}</h2>
         <div className="expense-item__price">${amount.toString()}</div>
       </div>
+      <button onClick={(event) => console.log("Button Clicked!")}>
+        Change a title
+      </button>
     </Card>
   );
 };
