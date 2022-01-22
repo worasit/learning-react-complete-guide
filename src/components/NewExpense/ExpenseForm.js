@@ -4,36 +4,55 @@ import "./ExpenseForm.css";
 
 const ExpenseForm = (props) => {
   // Using multiple state
-  // const [enteredTitle, setEnteredTitle] = useState("");
-  // const [enteredAmount, setEnteredAmount] = useState("");
-  // const [enteredDate, setEnteredDate] = useState("");
+  const [enteredTitle, setEnteredTitle] = useState("");
+  const [enteredAmount, setEnteredAmount] = useState("");
+  const [enteredDate, setEnteredDate] = useState("");
 
   // Using one state
-  const [enteredInput, setEnteredInput] = useState({
-    enteredTitle: "",
-    enteredAmount: "",
-    enteredDate: "",
-  });
+  // const [enteredInput, setEnteredInput] = useState({
+  //   enteredTitle: "",
+  //   enteredAmount: "",
+  //   enteredDate: "",
+  // });
 
   const titleChangedHandler = (event) => {
-    setEnteredInput({
-      ...enteredInput,
-      enteredTitle: event.target.value,
-    });
+    setEnteredTitle(event.target.value);
+    // setEnteredInput({
+    //   ...enteredInput,
+    //   enteredTitle: event.target.value,
+    // });
+    // setEnteredInput((prevState) => ({
+    //   ...prevState,
+    //   enteredTitle: event.target.value,
+    // }));
   };
 
   const amountChangedHandler = (event) => {
-    setEnteredInput({
-      ...enteredInput,
-      enteredAmount: event.target.value,
-    });
+    setEnteredAmount(event.target.value);
+    // setEnteredInput({
+    //   ...enteredInput,
+    //   enteredAmount: event.target.value,
+    // });
+    // setEnteredInput((prevState) => {
+    //   return {
+    //     ...prevState,
+    //     enteredAmount: event.target.value,
+    //   };
+    // });
   };
 
   const dateChangedHandler = (event) => {
-    setEnteredInput({
-      ...enteredInput,
-      enteredDate: event.target.value,
-    });
+    setEnteredDate(event.target.value);
+    // setEnteredInput({
+    //   ...enteredInput,
+    //   enteredDate: event.target.value,
+    // });
+    // setEnteredInput((prevState) => {
+    //   return {
+    //     ...prevState,
+    //     enteredDate: event.target.value,
+    //   };
+    // });
   };
 
   return (
