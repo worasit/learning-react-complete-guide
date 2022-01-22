@@ -2,15 +2,15 @@ import "./Expenses.css";
 import ExpenseItem from "./ExpenseItem";
 
 function Expenses(props) {
-  const { expenses } = props;
+  const { items } = props;
   return (
     <div className="expenses">
-      {expenses.map((expense) => {
+      {items.map((item) => {
         return (
           <ExpenseItem
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
+            title={item.title}
+            amount={item.amount}
+            date={item.date}
           />
         );
       })}
