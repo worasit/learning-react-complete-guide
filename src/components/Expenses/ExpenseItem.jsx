@@ -4,9 +4,12 @@ import ExpenseDate from "./ExpenseDate";
 import Card from "../UI/Card";
 
 const ExpenseItem = (props) => {
-  const { title, amount, date } = props;
+  let { title, amount, date } = props;
 
-  const onClickHandler = () => console.log("Button Clicked!");
+  const onClickHandler = () => {
+    title = "Updated!";
+    console.log("Button Clicked!");
+  };
 
   return (
     <Card className="expense-item">
