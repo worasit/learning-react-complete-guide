@@ -2,11 +2,12 @@ import React, { useState } from "react";
 
 import "./ExpenseForm.css";
 
+const EMPTY = "";
 const ExpenseForm = (props) => {
   // Using multiple state
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("");
-  const [enteredDate, setEnteredDate] = useState("");
+  const [enteredTitle, setEnteredTitle] = useState(EMPTY);
+  const [enteredAmount, setEnteredAmount] = useState(EMPTY);
+  const [enteredDate, setEnteredDate] = useState(EMPTY);
 
   // Using one state
   // const [enteredInput, setEnteredInput] = useState({
@@ -66,6 +67,9 @@ const ExpenseForm = (props) => {
     };
 
     console.log(expenseData);
+    setEnteredTitle(EMPTY);
+    setEnteredAmount(EMPTY);
+    setEnteredDate(EMPTY);
   };
 
   return (
