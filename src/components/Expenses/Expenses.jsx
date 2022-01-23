@@ -4,6 +4,8 @@ import ExpenseItem from "./ExpenseItem";
 import Card from "../UI/Card";
 import ExpenseFilter from "./ExpenseFilter";
 
+const ALL = "all";
+const EMPTY_EXPENSE = <p>No Expenses found!</p>;
 const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState("2021");
   console.log("Expenses was re-evaluated");
@@ -13,38 +15,36 @@ const Expenses = (props) => {
     console.log(selectedYear);
   };
 
-  const filterExpenseItems = (selectedYear) =>
-    props.items
-      .filter(
-        (item) =>
-          new Date(item.date).getFullYear().toString() ===
-          selectedYear.toString()
-      )
-      .map((item, index) => {
-        return (
-          <ExpenseItem
-            key={index}
-            title={item.title}
-            amount={item.amount}
-            date={item.date}
-          />
-        );
-      });
+  const renderExpenseItems = (items) =>
+    items.map((item, index) => {
+      return (
+        <ExpenseItem
+          key={index}
+          title={item.title}
+          amount={item.amount}
+          date={item.date}
+        />
+      );
+    });
+
+  const filterExpenseItems = (selectedYear) => {
+    const filteredExpenses = props.items.filter(
+      (item) =>
+        new Date(item.date).getFullYear().toString() === selectedYear.toString()
+    );
+
+    if (filteredExpenses.length === 0) {
+      return EMPTY_EXPENSE;
+    } else {
+      return renderExpenseItems(filteredExpenses);
+    }
+  };
 
   return (
     <Card className="expenses">
       <ExpenseFilter selected={filteredYear} onYearSelect={yearSelectHandler} />
-      {filteredYear.toLocaleLowerCase() === "all"
-        ? props.items.map((item, index) => {
-            return (
-              <ExpenseItem
-                key={index}
-                title={item.title}
-                amount={item.amount}
-                date={item.date}
-              />
-            );
-          })
+      {filteredYear.toLocaleLowerCase() === ALL
+        ? renderExpenseItems(props.items)
         : filterExpenseItems(filteredYear)}
     </Card>
   );
