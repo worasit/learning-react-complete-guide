@@ -4,9 +4,12 @@ import "./NewExpense.css";
 import ExpenseForm from "./ExpenseForm";
 
 const NewExpense = (props) => {
+  const saveExpenseHandler = (expenseData) => {
+    props.onAddExpense(expenseData);
+  };
   return (
     <div className="new-expense">
-      <ExpenseForm />
+      <ExpenseForm onSaveExpense={saveExpenseHandler} />
     </div>
   );
 };
