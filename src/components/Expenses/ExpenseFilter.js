@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ExpenseFilter.css";
 
 const ExpenseFilter = (props) => {
+  const [selectedYear, setSelectedYear] = useState("2021");
+
   const changeHandler = (event) => {
     props.onYearSelect(event.target.value);
+    setSelectedYear(event.target.value);
   };
 
   return (
     <div className="expenses-filter">
       <div className="expenses-filter__control">
         <label htmlFor="years">Select a year:</label>
-        <select name="years" id="years" onChange={changeHandler}>
+        <select
+          value={selectedYear}
+          name="years"
+          id="years"
+          onChange={changeHandler}
+        >
           <option value="2022">2022</option>
           <option value="2021">2021</option>
           <option value="2020">2020</option>
