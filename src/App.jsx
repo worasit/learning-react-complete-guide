@@ -34,9 +34,7 @@ const App = () => {
   const [expenses, setExpenses] = useState(initialExpenses);
 
   const addExpenseHandler = (expense) => {
-    console.log(expense);
-    setExpenses([...expenses, expense]);
-    console.log("set expenses was called");
+    setExpenses((prevState) => [...prevState, expense]);
   };
   return (
     <div>
