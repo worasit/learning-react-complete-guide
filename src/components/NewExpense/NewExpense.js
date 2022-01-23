@@ -26,13 +26,14 @@ const NewExpense = (props) => {
 
   return (
     <div className="new-expense">
-      {isEditing ? (
+      {!isEditing && (
+        <NewExpenseEmpty onAddExpenseClicked={addExpensedClickedHandler} />
+      )}
+      {isEditing && (
         <ExpenseForm
           onCancelClicked={cancelClickedHandler}
           onSaveExpense={saveExpenseHandler}
         />
-      ) : (
-        <NewExpenseEmpty onAddExpenseClicked={addExpensedClickedHandler} />
       )}
     </div>
   );
