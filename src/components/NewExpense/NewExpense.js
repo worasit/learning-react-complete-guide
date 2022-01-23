@@ -6,7 +6,7 @@ import ExpenseForm from "./ExpenseForm";
 import NewExpenseEmpty from "./NewExpenseEmpty";
 
 const NewExpense = (props) => {
-  const [isFormDisplayed, setIsFormDisplayed] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   const saveExpenseHandler = (enteredExpenseData) => {
     const expenseData = {
@@ -16,28 +16,23 @@ const NewExpense = (props) => {
     props.onAddExpense(expenseData);
   };
 
-  const addExpensedClickedHandler = (isFormDisplayed) => {
-    setIsFormDisplayed(!isFormDisplayed);
+  const addExpensedClickedHandler = () => {
+    setIsEditing(true);
   };
 
-  const cancelClickedHandler = (isCanceled) => {
-    console.log("cancelClickedHandler is executed");
-    setIsFormDisplayed(isCanceled);
+  const cancelClickedHandler = () => {
+    setIsEditing(false);
   };
 
   return (
     <div className="new-expense">
-      {isFormDisplayed ? (
+      {isEditing ? (
         <ExpenseForm
-          isFormDisplay={isFormDisplayed}
           onCancelClicked={cancelClickedHandler}
           onSaveExpense={saveExpenseHandler}
         />
       ) : (
-        <NewExpenseEmpty
-          isFormDisplay={isFormDisplayed}
-          onAddExpenseClicked={addExpensedClickedHandler}
-        />
+        <NewExpenseEmpty onAddExpenseClicked={addExpensedClickedHandler} />
       )}
     </div>
   );
