@@ -6,16 +6,21 @@ import ExpenseFilter from "./ExpenseFilter";
 
 const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState("2021");
-  const [expenseItems, setExpenseItems] = useState(props.items);
+  console.log("Expenses was re-evaluated");
 
   const yearSelectHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
     console.log(selectedYear);
   };
-  return (
-    <Card className="expenses">
-      <ExpenseFilter selected={filteredYear} onYearSelect={yearSelectHandler} />
-      {expenseItems.map((item, index) => {
+
+  const filterExpenseItems = (selectedYear) =>
+    props.items
+      .filter(
+        (item) =>
+          new Date(item.date).getFullYear().toString() ===
+          selectedYear.toString()
+      )
+      .map((item, index) => {
         return (
           <ExpenseItem
             key={index}
@@ -24,7 +29,23 @@ const Expenses = (props) => {
             date={item.date}
           />
         );
-      })}
+      });
+
+  return (
+    <Card className="expenses">
+      <ExpenseFilter selected={filteredYear} onYearSelect={yearSelectHandler} />
+      {filteredYear.toLocaleLowerCase() === "all"
+        ? props.items.map((item, index) => {
+            return (
+              <ExpenseItem
+                key={index}
+                title={item.title}
+                amount={item.amount}
+                date={item.date}
+              />
+            );
+          })
+        : filterExpenseItems(filteredYear)}
     </Card>
   );
 };

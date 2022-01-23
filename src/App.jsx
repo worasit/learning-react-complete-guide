@@ -1,9 +1,11 @@
 import "./App.css";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
+import { useState } from "react";
 
 const App = () => {
-  const expenses = [
+  console.log("App re-evaluated");
+  const initialExpenses = [
     {
       id: 1,
       title: "Car Insurance",
@@ -29,9 +31,12 @@ const App = () => {
       date: new Date(2021, 2, 20),
     },
   ];
+  const [expenses, setExpenses] = useState(initialExpenses);
 
   const addExpenseHandler = (expense) => {
     console.log(expense);
+    setExpenses([...expenses, expense]);
+    console.log("set expenses was called");
   };
   return (
     <div>
