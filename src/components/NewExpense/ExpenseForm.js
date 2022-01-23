@@ -5,6 +5,7 @@ import "./ExpenseForm.css";
 const EMPTY = "";
 const ExpenseForm = (props) => {
   // Using multiple state
+  const [isCanceled, setIsCanceled] = useState(false);
   const [enteredTitle, setEnteredTitle] = useState(EMPTY);
   const [enteredAmount, setEnteredAmount] = useState(EMPTY);
   const [enteredDate, setEnteredDate] = useState(EMPTY);
@@ -72,8 +73,13 @@ const ExpenseForm = (props) => {
     setEnteredDate(EMPTY);
   };
 
+  const resetHandler = () => {
+    setIsCanceled((prevState) => !prevState);
+    props.onCancelClicked(isCanceled);
+  };
+
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} onReset={resetHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
@@ -106,6 +112,7 @@ const ExpenseForm = (props) => {
       </div>
       <div className="new-expense__actions">
         <button type="submit">Add Expense</button>
+        <button type="reset">Cancel</button>
       </div>
     </form>
   );
